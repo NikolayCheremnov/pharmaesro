@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: pharmacy_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=pharmaestro_db
+      - DATABASE_HOST=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - database_postgres:/var/lib/postgresql/data
+    networks:
+      - pharmacy_net
+
+volumes:
+  database_postgres:
+
+networks:
+  pharmacy_net:
+    driver: bridge
